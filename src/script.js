@@ -24,8 +24,8 @@ window.addEventListener("mousemove", (e) => {
 });
 
 gltfLoader.load("/models/Databar/databar-medium.glb", (gltf) => {
-  gltf.scene.scale.set(0.15, 0.15, 0.15);
-  gltf.scene.position.set(0, -0.5, 0);
+  gltf.scene.scale.set(0.09, 0.09, 0.09);
+  gltf.scene.position.set(0, -0.3, 0);
   gltf.scene.rotateX(0.96);
   gltf.scene.rotateY(0.785398);
   console.log(gltf.scene);
@@ -62,10 +62,12 @@ const sizes = {
 };
 
 const aspectRatio = sizes.width / sizes.height;
-const camera = new THREE.OrthographicCamera(-1 * aspectRatio, 1 * aspectRatio, 1, -1, 0.1, 100);
+const camera = new THREE.OrthographicCamera(-1 * aspectRatio, 1 * aspectRatio, 1, -1, 0.01, 10);
 camera.rotation.x = 0;
 camera.position.y = -0.357;
 camera.position.z = 1;
+// camera.zoom = 0.5;
+camera.updateMatrix();
 scene.add(camera);
 
 // const helper = new THREE.CameraHelper(camera);
@@ -73,9 +75,10 @@ scene.add(camera);
 
 const controls = new OrbitControls(camera, canvas);
 controls.rotateSpeed = 2;
-controls.noPan = true;
-controls.noZoom = true;
+// controls.noPan = true;
+// controls.noZoom = true;
 controls.enableDamping = true;
+controls.update();
 // controls.maxPolarAngle = Math.PI / 8;
 
 controls.addEventListener("start", () => {
