@@ -78,8 +78,12 @@ controls.rotateSpeed = 2;
 // controls.noPan = true;
 // controls.noZoom = true;
 controls.enableDamping = true;
+controls.enablePan = false;
+// controls.enableRotate = false;
+controls.minPolarAngle = Math.PI * 0.25;
+controls.maxPolarAngle = Math.PI * 0.75;
+
 controls.update();
-// controls.maxPolarAngle = Math.PI / 8;
 
 controls.addEventListener("start", () => {
   gsap.killTweensOf(camera.position);
